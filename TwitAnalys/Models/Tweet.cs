@@ -15,20 +15,19 @@ public class Tweet
         TweetText = tweetText;
     }
 
-    public void SetSentiment(double value)
+    public Tweet(SimplifiedTweet tweet)
     {
-        Sentiment = value;
+        Placemnt.Lat = tweet.Latitude;
+        Placemnt.Lng = tweet.Longitude;
+        TweetText = tweet.TweetText.Split(' ');
+        Sentiment = tweet.GetSentiment();
+        State = tweet.GetStateName();
     }
 
-    public double GetSentiment()
-    {
-        return Sentiment;
-    }
-
-    public void SetState(string stateName)
-    {
-        State = stateName;
-    }
+    public void SetSentiment(double value) => Sentiment = value;
+    public void SetState(string stateName) => State = stateName;
+    public double GetSentiment() => Sentiment;
+    public string? GetStateName() => State; 
 
 
     public override string ToString()

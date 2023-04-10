@@ -1,4 +1,5 @@
-﻿using TwitAnalys.Instruments;
+﻿using Microsoft.IdentityModel.Tokens;
+using TwitAnalys.Instruments;
 using TwitAnalys.Models;
 
 namespace TwitAnalys.DataLayer;
@@ -56,27 +57,38 @@ public class StateRepository
         });
      }
 
-    public static void FillSentiment()
+    public static void FillSentiment(Tweet tweet)
     {
-       
-
-        //foreach (var state in StateRepository.States)
-        Parallel.ForEach(States, state =>
+        if (!tweet.GetStateName().IsNullOrEmpty())
         {
-            Parallel.For(0, state.Polygons.Count, i =>
+            Parallel.ForEach(States, state =>
             {
-                foreach (var tweet in TweetRepository.Tweets)
+                Parallel.For(0, state.Polygons.Count, i =>
                 {
                     if (state.Polygons[i].IsInside(tweet.Placemnt))
                     {
                         state.GlobalSentiment += tweet.GetSentiment();
                         state.TweetsCount++;
+                        tweet.SetState(state.Name);
                         if (tweet.GetSentiment() == 0) state.NonSentimentTweets++;
                     }
-                }
 
+
+                });
             });
-        });
+            return;
+        }
+
+        foreach (var state in States)
+        {
+            if (state.Name == tweet.GetStateName())
+            {
+                state.GlobalSentiment += tweet.GetSentiment();
+                state.TweetsCount++;
+                if (tweet.GetSentiment() == 0) state.NonSentimentTweets++;
+            }
+        }
+        
     } 
     public List<State> GetStates()
     {
