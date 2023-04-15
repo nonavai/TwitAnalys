@@ -25,7 +25,7 @@ public class TweetParser
         
         return null;
     }
-    public static SimplifiedTweet? ParseSimplified(string text)
+    /*public static SimplifiedTweet? ParseSimplified(string text)
     {
         string[] elements = text.Split('\t');
         if (elements.Length == 4)
@@ -38,34 +38,7 @@ public class TweetParser
         }
         
         return null;
-    }
-    /*public static Tweet? Parsee(string text)
-    {
-        
-        string[] elements = text.Split('\t');
-        if (elements.Length == 4)
-        {
-            return new Tweet(new PointLatLng(Convert.ToDouble(elements[0].Replace("[", "").Replace("]", "").Split(", ")[0].Replace(".", ",")),
-                Convert.ToDouble(elements[0].Replace("[", "").Replace("]", "").Split(", ")[1].Replace(".", ","))), elements[^1].Split(' '));
-        }
-        return null;
     }*/
-    /*public static List<Tweet> Parsee(string text)
-    {
-        List<Tweet> tweets = new List<Tweet>();
-        foreach (string line in text.Split('\n'))
-        {
-            string[] elements = line.Split('\t');
-            if (elements.Length == 4)
-            {
-                string[] coordinates = elements[0].Replace("[", "").Replace("]", "").Split(", ");
-                Point newPoint = new Point(Convert.ToDouble(coordinates[0].Replace(".", ",")),
-                    Convert.ToDouble(coordinates[1].Replace(".", ",")));
-                tweets.Add(new Tweet(newPoint, elements[^1].Split(' ')));
-            }
-        }
-
-        return tweets;
-    }*/
+    
     
 }

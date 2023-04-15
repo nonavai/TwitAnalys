@@ -1,20 +1,20 @@
-﻿using System.Text;
-using ABI.Windows.ApplicationModel.VoiceCommands;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text;
+//using ABI.Windows.ApplicationModel.VoiceCommands;
 using GMap.NET;
+using Microsoft.EntityFrameworkCore;
 using TwitAnalys.DataLayer;
 
 namespace TwitAnalys.Models;
 
 public class SimplifiedTweet
 {
+    [Key]
     public int SimplifiedTweetId { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
     public string TweetText { get; set; }
-
-    
     public double Sentiment { get; set; }
-    
     public string? State { get; set; }
 
     public SimplifiedTweet(Tweet tweet)

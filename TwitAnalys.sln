@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitAnalys", "TwitAnalys\TwitAnalys.csproj", "{759A6BE7-9F94-45D8-99C9-09A7E82F151B}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitAnalys", "TwitAnalys\TwitAnalys.csproj", "{759A6BE7-9F94-45D8-99C9-09A7E82F151B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitWeb", "TwitWeb\TwitWeb.csproj", "{909429BC-CA1B-4A61-9E2C-4924D713397D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{759A6BE7-9F94-45D8-99C9-09A7E82F151B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{759A6BE7-9F94-45D8-99C9-09A7E82F151B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{759A6BE7-9F94-45D8-99C9-09A7E82F151B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909429BC-CA1B-4A61-9E2C-4924D713397D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909429BC-CA1B-4A61-9E2C-4924D713397D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909429BC-CA1B-4A61-9E2C-4924D713397D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909429BC-CA1B-4A61-9E2C-4924D713397D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {763C99CF-C93B-41B4-8B43-C8382FDDB490}
 	EndGlobalSection
 EndGlobal

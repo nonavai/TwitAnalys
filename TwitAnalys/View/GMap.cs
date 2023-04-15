@@ -30,8 +30,8 @@ namespace TwitAnalys.View
             gMapControl1.Zoom = 4;
 
             gMapControl1.MapScaleInfoEnabled = true;
+            GMapDraw.DrawPolygons();
             GMapOverlay polyOverlay = GMapDraw.Overlay;
-            //GMapDraw.DrawMarkers(polyOverlay);
             gMapControl1.Overlays.Add(polyOverlay);
         }
 

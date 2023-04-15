@@ -9,7 +9,7 @@ using TwitAnalys.View;
 
 namespace TwitAnalys.DataLayer;
 
-public class TweetRepository
+public class CreateTweet
 {
     //public static List<Tweet> Tweets = new ();
     
@@ -57,32 +57,5 @@ public class TweetRepository
             }
         }
         StateRepository.FillSentiment(tweet);
-        
-            /*});*/
-        //int i = 0; 
-
     }
-    /*public static List<Tweet> GetTweets()
-    {
-        return Tweets;
-    }*/
-
-    
-/*for (int i = 0; i < tweet.TweetText.Length - 1; i++)
-            {
-                if (sentiments.ContainsKey(tweet.TweetText[i]))
-                {
-                    StringBuilder sentiment = new StringBuilder(tweet.TweetText[i] + " ");
-                    while (i!=tweet.TweetText.Length-1 && sentiments.ContainsKey(sentiment + tweet.TweetText[i + 1]))
-                    {
-                        sentiment.Append(tweet.TweetText[i + 1] + " ");
-                        i++;
-                    }
-                    tweet.SetSentiment(tweet.GetSentiment() + sentiments[sentiment.Remove(sentiment.Length-1, 1).ToString()]);
-                    if (tweet.TweetText.Length == i && sentiments.ContainsKey(tweet.TweetText[i])) 
-                        tweet.SetSentiment(tweet.GetSentiment() + sentiments[tweet.TweetText[i]]);
-                }
-            }*/
-    
-
 }

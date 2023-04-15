@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.IdentityModel.Tokens;
 using TwitAnalys.Instruments;
 using TwitAnalys.Models;
 
@@ -56,10 +57,10 @@ public class StateRepository
             });
         });
      }
-
+    
     public static void FillSentiment(Tweet tweet)
     {
-        if (!tweet.GetStateName().IsNullOrEmpty())
+        if (tweet.GetStateName().IsNullOrEmpty())
         {
             Parallel.ForEach(States, state =>
             {
