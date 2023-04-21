@@ -1,6 +1,4 @@
-﻿using System.Data;
-using System.Reflection.Metadata;
-using TwitAnalys.Instruments;
+﻿using TwitAnalys.Instruments;
 
 namespace TwitAnalys.DataLayer;
 

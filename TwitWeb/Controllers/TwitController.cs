@@ -95,11 +95,3 @@ public class TwitController : ControllerBase
 
 }
     
-    /*[HttpGet]
-        public ActionResult<IEnumerable<SimplifiedTweet>> GetAllTweets()
-        {
-            //_logger.Log(LogLevel.Information, "all");
-            IEnumerable<SimplifiedTweet> Tweets = db.Tweets;
-            return Ok(Tweets);
-        }*/
-    

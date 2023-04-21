@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <TargetFramework>net6.0-windows</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TargetFramework>net6.0-windows</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="C:\rider\c#projects\TwitAnalys\TwitAnalys\TwitAnalys.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="C:\rider\c#projects\TwitAnalys\TwitAnalys\TwitAnalys.csproj" />
+    </ItemGroup>
 
 </Project>

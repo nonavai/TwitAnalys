@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using TwitAnalys.Instruments;
 using TwitAnalys.Models;
 
@@ -8,12 +7,13 @@ namespace TwitAnalys.DataLayer;
 public class StateRepository
 {
     public static List<State> States;
+    private static readonly object LockObject = new object();
     public static async Task CreateRepository(string json)
     {
         StreamReader reader = new StreamReader(json);
         States =JsonDeserializer.Deserialize( await reader.ReadToEndAsync());
     }
-    
+
     public static void FillColor()
      {
         Parallel.ForEach(States, state =>
@@ -57,26 +57,29 @@ public class StateRepository
             });
         });
      }
-    
-    public static void FillSentiment(Tweet tweet)
+    public static void FillSentiment(SimplifiedTweet tweet)
     {
         if (tweet.GetStateName().IsNullOrEmpty())
         {
-            Parallel.ForEach(States, state =>
+            foreach(var state in States)
             {
-                Parallel.For(0, state.Polygons.Count, i =>
+                for (int i = 0; i < state.Polygons.Count; i++)
                 {
-                    if (state.Polygons[i].IsInside(tweet.Placemnt))
+                    if (state.Polygons[i].IsInside(tweet.GetCoordinate()))
                     {
-                        state.GlobalSentiment += tweet.GetSentiment();
-                        state.TweetsCount++;
-                        tweet.SetState(state.Name);
-                        if (tweet.GetSentiment() == 0) state.NonSentimentTweets++;
+                        lock (LockObject)
+                        {
+                           state.GlobalSentiment += tweet.GetSentiment();
+                           state.TweetsCount++;
+                           tweet.SetState(state.Name);
+                           if (tweet.GetSentiment() == 0) state.NonSentimentTweets++; 
+                        }
+                        
                     }
 
 
-                });
-            });
+                }
+            }
             return;
         }
 
@@ -84,16 +87,18 @@ public class StateRepository
         {
             if (state.Name == tweet.GetStateName())
             {
-                state.GlobalSentiment += tweet.GetSentiment();
-                state.TweetsCount++;
-                if (tweet.GetSentiment() == 0) state.NonSentimentTweets++;
+                lock (LockObject)
+                {
+                    state.GlobalSentiment += tweet.GetSentiment();
+                    state.TweetsCount++;
+                    if (tweet.GetSentiment() == 0) state.NonSentimentTweets++;
+                }
             }
         }
         
-    } 
+    }
     public List<State> GetStates()
     {
         return States;
     }
 }
-//"C:\\rider\\c#projects\\TwitAnalys\\TwitAnalys\\files\\states.json"

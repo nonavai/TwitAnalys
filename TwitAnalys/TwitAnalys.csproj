@@ -19,6 +19,11 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+    </ItemGroup>    
+
+    <ItemGroup>
+      <Compile Remove="Migrations\20230415060531_Tweets.cs" />
+      <Compile Remove="Migrations\20230415060531_Tweets.Designer.cs" />
     </ItemGroup>
 
 </Project>

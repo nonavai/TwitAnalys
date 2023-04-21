@@ -1,38 +1,32 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using TwitAnalys.Instruments;
 using TwitAnalys.Models;
-using TwitAnalys.View;
 
 namespace TwitAnalys.DataLayer;
 
 public class CreateTweet
 {
-    //public static List<Tweet> Tweets = new ();
-    
+    public static List<Task> Tasks= new (); 
     public static async Task CreateRepository(string file)
     {
         using (StreamReader reader = new StreamReader(file))
         {
             while (!reader.EndOfStream)
             {
-                Tweet? tweet = TweetParser.Parse(reader.ReadLine());
-                if (tweet != null) TweetHandler.HandleAndCreate(tweet);
+                SimplifiedTweet? tweet = TweetParser.ParseSimplified(reader.ReadLine());
+                if (tweet != null) Tasks.Add( Task.Run(() => TweetHandler.HandleAndCreate(tweet)));
             }
         }
     }
 
     [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH", MessageId = "type: System.String")]
-    public static void FillTweetSentiment(Tweet tweet)
+    
+    public static void FillTweetSentiment(SimplifiedTweet tweet)
     {
         Dictionary<string, double> sentiments = SentimentRepository.Sentiment;
-        /*Parallel.ForEach(Tweets, tweet =>
-        {*/
         StringBuilder sb = new StringBuilder("");
-        for (int i = 0; i < tweet.TweetText.Length - 4; i++)
+        for (int i = 0; i < tweet.Splited.Length - 4; i++)
         {
             int q = 4;
             
@@ -41,7 +35,7 @@ public class CreateTweet
                
                 for (int j = 0; j < q; j++)
                 {
-                    sb.Append(tweet.TweetText[i + j] + " ");
+                    sb.Append(tweet.Splited[i + j] + " ");
                 }
 
                 sb.Remove(sb.Length - 1, 1);
@@ -56,6 +50,5 @@ public class CreateTweet
                 q--;
             }
         }
-        StateRepository.FillSentiment(tweet);
     }
 }

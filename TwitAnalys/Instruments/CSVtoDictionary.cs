@@ -1,5 +1,4 @@
 ﻿
-
 namespace TwitAnalys.Instruments;
 
 public class CSVtoDictionary

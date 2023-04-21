@@ -1,9 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
-using GMap.NET;
-using GMap.NET.WindowsForms;
-using TwitAnalys.DataLayer;
-using TwitAnalys.Models;
+﻿using GMap.NET.WindowsForms;
 
 namespace TwitAnalys.Models;
 public class State
@@ -19,18 +14,7 @@ public class State
         Name = name;
         Polygons = polygons;
     }
-
     
-
-
-    /*public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        List<ValidationResult> errors = new List<ValidationResult>();
-        if (Name == String.Empty || Name != Name.ToUpper() || Name.Length !=2) 
-            errors.Add(new ValidationResult("Incorrect State Name"));
-        return errors;
-    }*/
-
     public override string ToString()
     {
         return String.Format($"state initials: {Name}. It's Global Sentiment: {GlobalSentiment}");
